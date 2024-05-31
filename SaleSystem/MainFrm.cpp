@@ -6,6 +6,7 @@
 #include "SaleSystem.h"
 
 #include "MainFrm.h"
+#include "InfoFile.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -64,6 +65,16 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	// 设置居中
 	CenterWindow();
+
+	// 测试CInfoFile
+	/*CInfoFile file;
+	CString name;
+	CString pwd;
+	// file.WritePwd("斧头帮帮主", "123");
+	file.ReadLogin(name, pwd);
+	MessageBox(name);
+	MessageBox(pwd);*/
+
 	return 0;
 }
 

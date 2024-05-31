@@ -102,6 +102,8 @@
     <None Include="res\SaleSystemDoc.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="InfoFile.h" />
+    <ClInclude Include="LoginDlg.h" />
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="SaleSystem.h" />
@@ -111,6 +113,8 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="InfoFile.cpp" />
+    <ClCompile Include="LoginDlg.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="SaleSystem.cpp" />
     <ClCompile Include="SaleSystemDoc.cpp" />
@@ -126,4 +130,9 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="SaleSystem.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>
