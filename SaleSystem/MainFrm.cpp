@@ -34,6 +34,8 @@ BEGIN_MESSAGE_MAP(CMainFrame, CFrameWnd)
 	ON_MESSAGE(NM_D, OnMyChange)
 	ON_MESSAGE(NM_E, OnMyChange)
 
+	ON_COMMAND(ID_32771, &CMainFrame::On32771)
+	ON_COMMAND(ID_32772, &CMainFrame::On32772)
 END_MESSAGE_MAP()
 
 static UINT indicators[] =
@@ -191,6 +193,23 @@ LRESULT CMainFrame::OnMyChange(WPARAM wParam, LPARAM lParam)
 	}
 	else if (wParam == NM_E)
 	{
+		MessageBox(TEXT("暂未实现"));
 	}
 	return 0;
+}
+
+
+void CMainFrame::On32771()
+{
+	// TODO: Add your command handler code here
+	// 个人信息
+	::PostMessage(AfxGetMainWnd()->GetSafeHwnd(), NM_A, (WPARAM)NM_A, (LPARAM)0);
+}
+
+
+void CMainFrame::On32772()
+{
+	// TODO: Add your command handler code here
+	// 销售管理
+	::PostMessage(AfxGetMainWnd()->GetSafeHwnd(), NM_B, (WPARAM)NM_B, (LPARAM)0);
 }

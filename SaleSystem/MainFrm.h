@@ -47,6 +47,9 @@ protected:
 private:
 	CSplitterWnd m_spliter;
 	virtual BOOL OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext);
+public:
+	afx_msg void On32771();
+	afx_msg void On32772();
 };
 
 
