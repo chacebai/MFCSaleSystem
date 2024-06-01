@@ -7,6 +7,9 @@
 
 #include "MainFrm.h"
 #include "InfoFile.h"
+#include "SelectView.h"
+#include "DisplayView.h"
+#include "UserDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -21,6 +24,13 @@ IMPLEMENT_DYNCREATE(CMainFrame, CFrameWnd)
 
 BEGIN_MESSAGE_MAP(CMainFrame, CFrameWnd)
 	ON_WM_CREATE()
+
+	ON_MESSAGE(NM_A, OnMyChange)
+	ON_MESSAGE(NM_B, OnMyChange)
+	ON_MESSAGE(NM_C, OnMyChange)
+	ON_MESSAGE(NM_D, OnMyChange)
+	ON_MESSAGE(NM_E, OnMyChange)
+
 END_MESSAGE_MAP()
 
 static UINT indicators[] =
@@ -104,3 +114,51 @@ void CMainFrame::Dump(CDumpContext& dc) const
 
 
 // CMainFrame 消息处理程序
+
+
+BOOL CMainFrame::OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext)
+{
+	// TODO: Add your specialized code here and/or call the base class
+
+	// return CFrameWnd::OnCreateClient(lpcs, pContext);
+
+	// 一行两列
+	m_spliter.CreateStatic(this, 1, 2);
+	// 左侧和右侧具体显示的内容
+	m_spliter.CreateView(0, 0, RUNTIME_CLASS(CSelectView), CSize(200,500), pContext);
+	m_spliter.CreateView(0, 1, RUNTIME_CLASS(CDisplayView), CSize(600,500), pContext);
+	return TRUE;
+}
+
+LRESULT CMainFrame::OnMyChange(WPARAM wParam, LPARAM lParam)
+{
+	CCreateContext context;
+	if (wParam == NM_A)
+	{
+		// MessageBox(TEXT("个人信息挂载"));
+		// 挂载界面
+		context.m_pNewViewClass = RUNTIME_CLASS(CUserDlg);
+		context.m_pCurrentFrame = this;
+		context.m_pLastView = (CFormView*)m_spliter.GetPane(0, 1);
+		m_spliter.DeleteView(0, 1);
+		m_spliter.CreateView(0, 1, RUNTIME_CLASS(CUserDlg), CSize(600, 500), &context);
+		CUserDlg *pNewView = (CUserDlg*)m_spliter.GetPane(0, 1);
+		m_spliter.RecalcLayout();
+		pNewView->OnInitialUpdate();
+		m_spliter.SetActivePane(0, 1);
+	}
+	else if (wParam == NM_B)
+	{
+		// MessageBox(TEXT("销售管理挂载"));
+	}
+	else if (wParam == NM_C)
+	{
+	}
+	else if (wParam == NM_D)
+	{
+	}
+	else if (wParam == NM_E)
+	{
+	}
+	return 0;
+}
