@@ -28,6 +28,8 @@ protected:
 public:
 	CListCtrl m_list;
 	virtual void OnInitialUpdate();
+	afx_msg void OnHdnEndtrackList1(NMHDR *pNMHDR, LRESULT *pResult);
+	afx_msg void OnSize(UINT nType, int cx, int cy);
 };
 
 

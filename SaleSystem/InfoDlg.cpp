@@ -28,6 +28,8 @@ void CInfoDlg::DoDataExchange(CDataExchange* pDX)
 }
 
 BEGIN_MESSAGE_MAP(CInfoDlg, CFormView)
+	ON_NOTIFY(HDN_ENDTRACK, 0, &CInfoDlg::OnHdnEndtrackList1)
+	ON_WM_SIZE()
 END_MESSAGE_MAP()
 
 
@@ -86,4 +88,30 @@ void CInfoDlg::OnInitialUpdate()
 		m_list.SetItemData(i,i);//ÓÃÓÚ´æ´¢ÅÅÐò¹Ø¼ü×Ö
 		i++;
 	}
+   //also lets move it to cover most of the dialog
+   CRect Rect;
+   GetClientRect(&Rect);
+   m_list.MoveWindow( 5, 35, Rect.Width()-10, Rect.Height()-10);
+}
+
+
+void CInfoDlg::OnHdnEndtrackList1(NMHDR *pNMHDR, LRESULT *pResult)
+{
+	LPNMHEADER phdr = reinterpret_cast<LPNMHEADER>(pNMHDR);
+	// TODO: Add your control notification handler code here
+	*pResult = 0;
+}
+
+
+void CInfoDlg::OnSize(UINT nType, int cx, int cy)
+{
+	CFormView::OnSize(nType, cx, cy);
+
+	// TODO: Add your message handler code here
+    //make sure m_cList has already been
+    //attached to the list control
+    if (IsWindow(m_list.m_hWnd))
+    {
+        m_list.MoveWindow( 5, 35, cx-10, cy-10);
+    }
 }
