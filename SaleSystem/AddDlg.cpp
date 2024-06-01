@@ -41,6 +41,8 @@ BEGIN_MESSAGE_MAP(CAddDlg, CFormView)
 	ON_CBN_SELCHANGE(IDC_COMBO1, &CAddDlg::OnCbnSelchangeCombo1)
 	ON_BN_CLICKED(IDC_BUTTON3, &CAddDlg::OnBnClickedButton3)
 	ON_BN_CLICKED(IDC_BUTTON4, &CAddDlg::OnBnClickedButton4)
+	ON_BN_CLICKED(IDC_BUTTON5, &CAddDlg::OnBnClickedButton5)
+	ON_BN_CLICKED(IDC_BUTTON6, &CAddDlg::OnBnClickedButton6)
 END_MESSAGE_MAP()
 
 
@@ -156,4 +158,43 @@ void CAddDlg::OnBnClickedButton4()
 	m_combox.SetCurSel(0);
 	// 更新第一个商品里的数据
 	OnCbnSelchangeCombo1();
+}
+
+
+void CAddDlg::OnBnClickedButton5()
+{
+	// TODO: Add your control notification handler code here
+	// 添加新商品
+	UpdateData(TRUE);
+	if (m_name2.IsEmpty() || m_num2 <= 0 || m_price2 <= 0)
+	{
+		MessageBox(TEXT("输入信息有错误"));
+		return;
+	}
+	CInfoFile file;
+	file.ReadDocline();
+	file.Addline(m_name2, m_num2, m_price2);
+	file.WirteDocline();
+	MessageBox(TEXT("添加成功！"));
+
+	//同步到左侧的商品名称下拉列表中
+	m_combox.InsertString(0,m_name2);
+	m_combox.SetCurSel(0);
+	OnCbnSelchangeCombo1();
+
+	//清空输入的内容
+	m_name2.Empty();
+	m_price2 = 0;
+	m_num2 = 0;
+	UpdateData(FALSE);
+}
+
+
+void CAddDlg::OnBnClickedButton6()
+{
+	// TODO: Add your control notification handler code here
+	m_name2.Empty();
+	m_num2 = 0;
+	m_price2 = 0;
+	UpdateData(FALSE);
 }
