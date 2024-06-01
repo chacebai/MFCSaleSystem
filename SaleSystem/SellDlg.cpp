@@ -97,15 +97,16 @@ void CSellDlg::OnCbnSelchangeCombo1()
 	file.ReadDocline();
 	for (auto it = file.ls.begin(); it != file.ls.end(); ++it)
 	{
-		if (CString(it->name.c_str()) == name);
+		CString tempStr(it->name.c_str());
+		if (tempStr.Compare(name) == 0)
 		{
 			m_price = it->price;
 			m_left = it->num;
 			// 同步到控件
 			UpdateData(FALSE);
+			break;
 		}
 	}
-
 }
 
 
@@ -134,7 +135,8 @@ void CSellDlg::OnBnClickedButton2()
 	file.ReadDocline();
 	for (auto it = file.ls.begin(); it != file.ls.end(); ++it)
 	{
-		if (CString(it->name.c_str()) == name)
+		CString tempStr(it->name.c_str());
+		if (tempStr.Compare(name) == 0)
 		{
 			// 同步库存量
 			it->num = m_left - m_num;
@@ -145,6 +147,7 @@ void CSellDlg::OnBnClickedButton2()
 			m_sellInfo = str;
 			UpdateData(FALSE);
 			MessageBox(_T("购买成功！"));
+			break;
 		}
 	}
 

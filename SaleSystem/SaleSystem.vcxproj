@@ -102,7 +102,9 @@
     <None Include="res\SaleSystemDoc.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AddDlg.h" />
     <ClInclude Include="DisplayView.h" />
+    <ClInclude Include="InfoDlg.h" />
     <ClInclude Include="InfoFile.h" />
     <ClInclude Include="LoginDlg.h" />
     <ClInclude Include="MainFrm.h" />
@@ -117,7 +119,9 @@
     <ClInclude Include="UserDlg.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AddDlg.cpp" />
     <ClCompile Include="DisplayView.cpp" />
+    <ClCompile Include="InfoDlg.cpp" />
     <ClCompile Include="InfoFile.cpp" />
     <ClCompile Include="LoginDlg.cpp" />
     <ClCompile Include="MainFrm.cpp" />
