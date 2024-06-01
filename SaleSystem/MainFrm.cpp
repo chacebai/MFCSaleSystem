@@ -10,6 +10,7 @@
 #include "SelectView.h"
 #include "DisplayView.h"
 #include "UserDlg.h"
+#include "SellDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -150,6 +151,15 @@ LRESULT CMainFrame::OnMyChange(WPARAM wParam, LPARAM lParam)
 	else if (wParam == NM_B)
 	{
 		// MessageBox(TEXT("销售管理挂载"));
+		context.m_pNewViewClass = RUNTIME_CLASS(CSellDlg);
+		context.m_pCurrentFrame = this;
+		context.m_pLastView = (CFormView*)m_spliter.GetPane(0, 1);
+		m_spliter.DeleteView(0, 1);
+		m_spliter.CreateView(0, 1, RUNTIME_CLASS(CSellDlg), CSize(600, 500), &context);
+		CSellDlg *pNewView = (CSellDlg*)m_spliter.GetPane(0, 1);
+		m_spliter.RecalcLayout();
+		pNewView->OnInitialUpdate();
+		m_spliter.SetActivePane(0, 1);
 	}
 	else if (wParam == NM_C)
 	{
